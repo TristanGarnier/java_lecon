@@ -1,5 +1,10 @@
 package com.g4.app.business;
 
-public class FeeStrategy {
+//Interface définissant la stratégie de calcul du tarif
+//L'interface est un contrat
+public interface FeeStrategy {
 
+    public double calculerCout(Vehicule v);
+
+    public String descritpion();
 }
