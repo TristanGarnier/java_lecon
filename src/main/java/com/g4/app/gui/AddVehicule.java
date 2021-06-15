@@ -50,6 +50,8 @@ public class AddVehicule extends JDialog {
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(new GridLayout(5, 2, 0, 0));
+
+        setUndecorated(true);
         {
             JLabel label = new JLabel("Immatriculation");
             contentPanel.add(label);

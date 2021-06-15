@@ -53,6 +53,9 @@ public class FactureDialog extends JDialog {
                     }
                 });
                 // Ajout du button sur le content pane
+                okButton.setActionCommand("OK");
+                buttonPane.add(okButton);
+                getRootPane().setDefaultButton(okButton);
             }
         }
     }
@@ -73,6 +76,14 @@ public class FactureDialog extends JDialog {
         dialog.setResizable(false);
         dialog.setBounds(100, 100, 287, 287);
         dialog.setVisible(true);
+    }
+
+    public Vehicule getVehicule() {
+        return vehicule;
+    }
+
+    public boolean getValue() {
+        return vehicule != null;
     }
 
 }

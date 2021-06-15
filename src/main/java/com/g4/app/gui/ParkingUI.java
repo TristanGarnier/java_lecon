@@ -14,6 +14,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import com.g4.app.business.Parking;
 import com.g4.app.exception.PasAssezObservateurException;
+import com.g4.app.exception.PlaceLibreException;
 import com.g4.app.exception.PlaceOccupeeException;
 
 public class ParkingUI {
@@ -104,6 +105,51 @@ public class ParkingUI {
         });
         mnActions.add(mtnAjouterVehicule);
         mtnAjouterVehicule.setHorizontalAlignment(SwingConstants.LEFT);
+
+        JMenuItem mtnCreerUneFacture = new JMenuItem("Afficher facture");
+        mtnCreerUneFacture.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FactureHist fh = new FactureHist();
+                fh.setModal(true);
+                fh.setLocationRelativeTo(frame);
+                fh.setVisible(true);
+                fh.setModal(false);
+            }
+        });
+        mnActions.add(mtnCreerUneFacture);
+
+        JMenuItem mntChercherVehicule = new JMenuItem("Chercher un véhicule");
+        mntChercherVehicule.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchVehicule sv = new SearchVehicule();
+                sv.setModal(true);
+                sv.setLocationRelativeTo(frame);
+                sv.setVisible(true);
+                int location = -1;
+                if (!sv.getValue()) {
+                    return;
+                }
+                try {
+                    location = Parking.getInstance().getLocalisation(sv.getImmat());
+                } catch (PlaceLibreException el) {
+                    el.printStackTrace();
+                }
+
+                if (location == -1) {
+                    JOptionPane.showMessageDialog(null, "Le vehicule chercher est introuvable", "Erreur",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Le vehicule se trouve à la place n°" + location, "Succès",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
+        });
+        mnActions.add(mntChercherVehicule);
     }
 
 }
