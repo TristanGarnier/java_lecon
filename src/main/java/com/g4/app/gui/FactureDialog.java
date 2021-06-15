@@ -60,8 +60,8 @@ public class FactureDialog extends JDialog {
         }
     }
 
-    FactureDialog(Voiture voiture) {
-        this(new Facture(voiture));
+    FactureDialog(Vehicule vehicule) {
+        this(new Facture(vehicule));
     }
 
     FactureDialog(Facture facture) {

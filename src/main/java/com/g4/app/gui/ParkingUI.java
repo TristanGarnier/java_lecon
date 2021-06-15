@@ -2,16 +2,21 @@ package com.g4.app.gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.Border;
 
+import com.g4.app.business.Constante;
 import com.g4.app.business.Parking;
 import com.g4.app.exception.PasAssezObservateurException;
 import com.g4.app.exception.PlaceLibreException;
@@ -20,6 +25,7 @@ import com.g4.app.exception.PlaceOccupeeException;
 public class ParkingUI {
     private JFrame frame;
     private Parking parking = Parking.getInstance();
+    private List<PlaceButton> placeButtons = new ArrayList<PlaceButton>();
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -150,6 +156,13 @@ public class ParkingUI {
 
         });
         mnActions.add(mntChercherVehicule);
+
+        JPanel panel = new JPanel();
+        frame.getContentPane().add(panel, BorderLayout.CENTER);
+        panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        for (int i = 0; i < Constante.nbPlaceParticulier + Constante.nbPlaceTransporteur; i++) {
+            placeButtons.add(new PlaceButton());
+        }
     }
 
 }

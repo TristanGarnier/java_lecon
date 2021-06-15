@@ -133,4 +133,8 @@ public class AddVehicule extends JDialog {
             }
         }
     }
+
+    public boolean getValue() {
+        return vehicule != null;
+    }
 }
